@@ -7,4 +7,30 @@ promise-fallback
 [![Build Status](https://travis-ci.org/dancrumb/promise-fallback.svg?branch=master)](https://travis-ci.org/dancrumb/promise-fallback)
 [![dependencies Status](https://david-dm.org/dancrumb/promise-fallback/status.svg)](https://david-dm.org/dancrumb/promise-fallback)
 
-A module for supporting fallbacks for promises
+A Promise represents a value which may (or may not) be available now or in the future.
+
+In general, such values are the result of an asynchronous process, either because they are being 
+retrieved from an external source (like a web page or a hard drive) or because they are 
+computationally intensive (and are done in a thread to avoid locking up the main event loop).
+
+But you knew that already.
+
+Sometimes, when you have a Promise and it is rejected, rather than resolved, you want to
+have a fallback. Recently, I've come across two such use cases:
+
+- Request resource A, if unavailable, try B, if unavailable, try C
+- Request resource A, if unavailable, wait and try again. Repeat up to 3 times.
+
+With ES2015 Promises:
+
+```
+getResource('A').then(useResource)
+    .catch((e) => {
+        return getResource('B');
+    }).then(useResource)
+    .catch((e) => {
+            return getResource('C');
+    }).then(useResource);
+
+```
+

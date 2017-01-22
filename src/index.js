@@ -7,6 +7,20 @@ function isPromise(val) {
 function fallbackWrapper(generator) {
   const iterator = generator();
 
+  function handleReturned(returned) {
+    if (!returned.done) {
+      if (isPromise(returned.value)) {
+        // eslint-disable-next-line no-use-before-define
+        returned.value.then(loopNext, loopError);
+      } else {
+        process.nextTick(() => {
+          // eslint-disable-next-line no-use-before-define
+          loopNext(returned.value);
+        });
+      }
+    }
+  }
+
   function loopNext(val) {
     const returned = iterator.next(val);
     handleReturned(returned);
@@ -17,25 +31,14 @@ function fallbackWrapper(generator) {
     handleReturned(returned);
   }
 
-  function handleReturned(returned) {
-    if (!returned.done) {
-      if (isPromise(returned.value)) {
-        returned.value.then(loopNext, loopError);
-      } else {
-        process.nextTick(() => {
-          loopNext(returned.value);
-        });
-      }
-    }
-  }
-
   loopNext();
 }
 
-function fallback(fpList, Promise) {
+function fallback(fpList) {
   return new Promise((resolve, reject) => {
     fallbackWrapper(function* g() {
       let finalError;
+      // eslint-disable-next-line no-restricted-syntax
       for (const fp of fpList) {
         try {
           const result = yield fp();
@@ -44,29 +47,29 @@ function fallback(fpList, Promise) {
           finalError = e;
         }
       }
-      reject(finalError);
+      return reject(finalError);
     });
   });
 }
 
+const fpListGenerator = function* fpListGenerator(func, countdownStart) {
+  let countdown = countdownStart;
+  while (countdown >= 0) {
+    yield func;
+    countdown -= 1;
+    if (countdown === 0) {
+      return;
+    }
+    if (countdown < 0) {
+      countdown = 0;
+    }
+  }
+};
+
 module.exports = {
   fallback,
 
-  retry(fp, times, Promise) {
-    let countdown = times;
-    const gen = function* () {
-      while (times >= 0) {
-        yield fp;
-        countdown -= 1;
-        if (times === 0) {
-          return;
-        }
-        if (times < 0) {
-          countdown = 0;
-        }
-      }
-    };
-
-    return fallback(gen(), Promise);
+  retry(fp, times) {
+    return fallback(fpListGenerator(fp, times));
   },
 };
