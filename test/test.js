@@ -40,6 +40,12 @@ describe('graceful-degrade', () => {
       expect(pf.fallback([() => 42])).to.eventually.equal(42),
       expect(pf.fallback([() => () => {}])).to.eventually.be.a('function'),
     ]));
+    it('supports Promises in the input list', () => Promise.all([
+      expect(pf.fallback([Promise.resolve(42)])).to.eventually.equal(42),
+    ]));
+    it('supports functions that throw and treats them like a rejection', () => Promise.all([
+      expect(pf.fallback([() => { throw new Error(); }])).to.be.rejected,
+    ]));
   });
 
   describe('retry', () => {
