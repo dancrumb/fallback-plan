@@ -1,11 +1,11 @@
-promise-fallback
+graceful-degrade
 ================
-[![NPM](https://nodei.co/npm/promise-fallback.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/promise-fallback/)
+[![NPM](https://nodei.co/npm/graceful-degrade.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/graceful-degrade/)
 
-[![Code Climate](https://codeclimate.com/github/dancrumb/promise-fallback/badges/gpa.svg)](https://codeclimate.com/github/dancrumb/promise-fallback)
-[![Test Coverage](https://codeclimate.com/github/dancrumb/promise-fallback/badges/coverage.svg)](https://codeclimate.com/github/dancrumb/promise-fallback/coverage)
-[![Build Status](https://travis-ci.org/dancrumb/promise-fallback.svg?branch=master)](https://travis-ci.org/dancrumb/promise-fallback)
-[![dependencies Status](https://david-dm.org/dancrumb/promise-fallback/status.svg)](https://david-dm.org/dancrumb/promise-fallback)
+[![Code Climate](https://codeclimate.com/github/dancrumb/graceful-degrade/badges/gpa.svg)](https://codeclimate.com/github/dancrumb/graceful-degrade)
+[![Test Coverage](https://codeclimate.com/github/dancrumb/graceful-degrade/badges/coverage.svg)](https://codeclimate.com/github/dancrumb/graceful-degrade/coverage)
+[![Build Status](https://travis-ci.org/dancrumb/graceful-degrade.svg?branch=master)](https://travis-ci.org/dancrumb/graceful-degrade)
+[![dependencies Status](https://david-dm.org/dancrumb/graceful-degrade/status.svg)](https://david-dm.org/dancrumb/graceful-degrade)
 
 A Promise represents a value which may (or may not) be available now or in the future.
 
@@ -50,7 +50,7 @@ You *could* construct this chain with
 This is better, but it requires you to define an array of Promises (or Promise sources).
 This might not be best for you.
 
-Using `promise-fallback` you could construct it like this:
+Using `graceful-degrade` you could construct it like this:
 ```
 p.fallback([
     () => getResource('A'),
@@ -74,7 +74,7 @@ p.fallback((function* (r) {
 # Installation
 
 ```
-npm i -S promise-fallback
+npm i -S graceful-degrade
 ```
 
 # License

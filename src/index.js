@@ -6,33 +6,27 @@ const isPromise = val => (val.then && isFunction(val.then));
 function fallbackWrapper(generator) {
   const iterator = generator();
 
+  // eslint-disable-next-line no-use-before-define
+  const loopNext = val => handleReturned(iterator.next(val));
+  // eslint-disable-next-line no-use-before-define
+  const loopError = val => handleReturned(iterator.throw(val));
+
   function handleReturned(returned) {
     if (!returned.done) {
-      let value = returned.value;
-      if (isFunction(value)) {
-        value = returned.value();
-      }
+      try {
+        const value = isFunction(returned.value) ? returned.value() : returned.value;
 
-      if (isPromise(value)) {
-        // eslint-disable-next-line no-use-before-define
-        value.then(loopNext, loopError);
-      } else {
-        process.nextTick(() => {
-          // eslint-disable-next-line no-use-before-define
-          loopNext(value);
-        });
+        if (isPromise(value)) {
+          value.then(loopNext, loopError);
+        } else {
+          process.nextTick(() => {
+            loopNext(value);
+          });
+        }
+      } catch (e) {
+        loopError(e);
       }
     }
-  }
-
-  function loopNext(val) {
-    const returned = iterator.next(val);
-    handleReturned(returned);
-  }
-
-  function loopError(e) {
-    const returned = iterator.throw(e);
-    handleReturned(returned);
   }
 
   loopNext();
@@ -55,17 +49,12 @@ function fallback(fpList) {
   });
 }
 
-const fpListGenerator = function* fpListGenerator(func, countdownStart) {
-  let countdown = countdownStart;
-  while (countdown >= 0) {
-    yield func;
+const sourceGenerator = function* sourceGenerator(val, times) {
+  let countdown = times;
+  const infinite = times === 0;
+  while (infinite || countdown > 0) {
+    yield val;
     countdown -= 1;
-    if (countdown === 0) {
-      return;
-    }
-    if (countdown < 0) {
-      countdown = 0;
-    }
   }
 };
 
@@ -73,6 +62,6 @@ module.exports = {
   fallback,
 
   retry(fp, times) {
-    return fallback(fpListGenerator(fp, times));
+    return fallback(sourceGenerator(fp, times));
   },
 };
