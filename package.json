@@ -1,7 +1,7 @@
 {
   "name": "graceful-degrade",
   "version": "1.0.0",
-  "description": "Support fallbacks for promises",
+  "description": "Handy support for graceful degradation",
   "main": "lib/index.js",
   "scripts": {
     "compile": "babel -d lib/ src/",
@@ -14,7 +14,7 @@
   },
   "keywords": [
     "promises",
-    "fallback"
+    "fallback", "graceful"
   ],
   "author": "Dan Rumney <dancrumb@gmail.com>",
   "license": "MIT",
