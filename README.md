@@ -31,6 +31,35 @@ getResource('A').then(useResource)
     .catch((e) => {
             return getResource('C');
     }).then(useResource);
-
 ```
 
+Now, you *could* construct this chain with
+
+```
+[
+    (e) => { return getResource('B') },
+    (e) => { return getResource('C') }
+].reduce(chain, (errHandler) => {
+    return chain.then(useResource).catch(errHandler);
+}, getResource('A'));
+```
+
+Or, using `promise-fallback` you could construct it like this:
+```
+p.fallback([
+    () => getResource('A'),
+    () => getResource('B'),
+    () => getResource('C')
+]).then(useResource);
+```
+
+# Installation
+
+```
+npm i -S promise-fallback
+```
+
+# License
+This module is provided under the [MIT License](MIT).
+
+[MIT]: https://spdx.org/licenses/MIT

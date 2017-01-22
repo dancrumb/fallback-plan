@@ -3,3 +3,4 @@ test/
 .eslintignore
 .eslintrc
 node_modules/
+coverage/
