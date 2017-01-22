@@ -3,7 +3,7 @@ require('babel-polyfill');
 const isFunction = val => (typeof val === 'function');
 const isPromise = val => (val.then && isFunction(val.then));
 
-function fallbackWrapper(generator) {
+function wrapper(generator) {
   const iterator = generator();
 
   // eslint-disable-next-line no-use-before-define
@@ -32,24 +32,24 @@ function fallbackWrapper(generator) {
   loopNext();
 }
 
-function fallback(fpList) {
+function fallback(sources) {
   return new Promise((resolve, reject) => {
-    fallbackWrapper(function* g() {
-      let finalError;
+    wrapper(function* g() {
+      let lastError;
       // eslint-disable-next-line no-restricted-syntax
-      for (const fp of fpList) {
+      for (const source of sources) {
         try {
-          return resolve(yield fp);
+          return resolve(yield source);
         } catch (e) {
-          finalError = e;
+          lastError = e;
         }
       }
-      return reject(finalError);
+      return reject(lastError);
     });
   });
 }
 
-const sourceGenerator = function* sourceGenerator(val, times) {
+const sourceMultiplier = function* sourceGenerator(val, times) {
   let countdown = times;
   const infinite = times === 0;
   while (infinite || countdown > 0) {
@@ -61,7 +61,7 @@ const sourceGenerator = function* sourceGenerator(val, times) {
 module.exports = {
   fallback,
 
-  retry(fp, times) {
-    return fallback(sourceGenerator(fp, times));
+  retry(source, times) {
+    return fallback(sourceMultiplier(source, times));
   },
 };
