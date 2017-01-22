@@ -6,3 +6,5 @@ build/Release
 
 node_modules/
 lib/
+.DS_Store
+npm-debug.log
