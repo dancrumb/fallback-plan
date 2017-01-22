@@ -1,21 +1,25 @@
 require('babel-polyfill');
 
-function isPromise(val) {
-  return val.then && (typeof val.then === 'function');
-}
+const isFunction = val => (typeof val === 'function');
+const isPromise = val => (val.then && isFunction(val.then));
 
 function fallbackWrapper(generator) {
   const iterator = generator();
 
   function handleReturned(returned) {
     if (!returned.done) {
-      if (isPromise(returned.value)) {
+      let value = returned.value;
+      if (isFunction(value)) {
+        value = returned.value();
+      }
+
+      if (isPromise(value)) {
         // eslint-disable-next-line no-use-before-define
-        returned.value.then(loopNext, loopError);
+        value.then(loopNext, loopError);
       } else {
         process.nextTick(() => {
           // eslint-disable-next-line no-use-before-define
-          loopNext(returned.value);
+          loopNext(value);
         });
       }
     }
@@ -41,8 +45,7 @@ function fallback(fpList) {
       // eslint-disable-next-line no-restricted-syntax
       for (const fp of fpList) {
         try {
-          const result = yield fp();
-          return resolve(result);
+          return resolve(yield fp);
         } catch (e) {
           finalError = e;
         }

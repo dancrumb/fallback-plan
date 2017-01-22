@@ -24,33 +24,51 @@ have a fallback. Recently, I've come across two such use cases:
 With ES2015 Promises:
 
 ```
-getResource('A').then(useResource)
-    .catch((e) => {
-        return getResource('B');
-    }).then(useResource)
-    .catch((e) => {
-            return getResource('C');
-    }).then(useResource);
+getResource('A')
+    .catch(() => getResource('B'))
+    .catch(() => getResource('C'))
+    .then(useResource);
 ```
 
-Now, you *could* construct this chain with
+That's fine, but it's statically defined... let's do better.
+
+You *could* construct this chain with
 
 ```
 [
-    (e) => { return getResource('B') },
-    (e) => { return getResource('C') }
-].reduce(chain, (errHandler) => {
-    return chain.then(useResource).catch(errHandler);
-}, getResource('A'));
+    () => getResource('A'),
+    () => getResource('B'),
+    () => getResource('C') 
+].reduce((chain, resourceGetter) => {
+    if(chain) {
+        return chain.then(useResource, resourceGetter);
+    }
+    return resourceGetter();
+});
 ```
 
-Or, using `promise-fallback` you could construct it like this:
+This is better, but it requires you to define an array of Promises (or Promise sources).
+This might not be best for you.
+
+Using `promise-fallback` you could construct it like this:
 ```
 p.fallback([
     () => getResource('A'),
     () => getResource('B'),
     () => getResource('C')
 ]).then(useResource);
+```
+
+But you could also construct it like this:
+
+```
+p.fallback((function* (r) {
+    for (let i = 0; i < r.length; i++) { 
+        yield getResource(r[i]); 
+    }
+})(['A', 'B', 'C'])
+).then(useResource);
+
 ```
 
 # Installation

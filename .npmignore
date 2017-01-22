@@ -4,3 +4,9 @@ test/
 .eslintrc
 node_modules/
 coverage/
+.idea/
+.istanbul.yml
+.babelrc
+.codeclimate.yml
+.travis.yml
+.npmignore

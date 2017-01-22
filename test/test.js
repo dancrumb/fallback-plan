@@ -33,6 +33,13 @@ describe('promise-fallback', () => {
       expect(pf.fallback([fail(1), fail(2), pass(3), fail(4)], Promise)).to.eventually.equal(3),
       expect(pf.fallback([fail(1), fail(2), fail(3), pass(4)], Promise)).to.eventually.equal(4),
     ]));
+    it('supports values in the input list', () => Promise.all([
+      expect(pf.fallback([42])).to.eventually.equal(42),
+    ]));
+    it('supports functions in the input list', () => Promise.all([
+      expect(pf.fallback([() => 42])).to.eventually.equal(42),
+      expect(pf.fallback([() => () => {}])).to.eventually.be.a('function'),
+    ]));
   });
 
   describe('retry', () => {
