@@ -6,7 +6,8 @@
   "scripts": {
     "compile": "babel -d lib/ src/",
     "test": "babel-node node_modules/.bin/isparta cover _mocha  --compilers js:babel-core/register",
-    "lint": "eslint -c .eslintrc src test ./*.js"
+    "lint": "eslint -c .eslintrc src test ./*.js",
+    "preversion": "npm run compile"
   },
   "repository": {
     "type": "git",
