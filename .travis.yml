@@ -21,4 +21,4 @@ addons:
 #    secure: Yznbvy8SPzq7cyQB3gT1Tf7TIJxJxO6WmjuGrBcyx+MSUyeDf3j0R+i2FY/a2KdPOw8OaLSw07eZ0tTaxv3YImRd5TcQjuVbDi3tTx/f1flFS5/OZn602dmCJlDOHGkKSBH0KOUbmUxUu0lhE0+KriRej/g86WePRn7hrXU/H8YWPI6Cy/12YA4qplbqGT80fhf0Ja7dcOAxI7hi2HGiOFkwjN3K1uRRum1RELqwcB3VFotzE2ydktGG01R/4lNKpUCQFgRkIjV9kiaZV4JGlWv1K4a8cLsHEzMgEcA9bhB9UYR0QbTioA/ohxVvsvCbEfYRO45EEf033xRM3u62sP5b0gDcI/UD+uBcJdjMnUNz11NJdqzCswloxMd3vVqBTIDZA49Og00lDeqJTBJlC/omSPQ2yoBWHD6pb6lqMmVgH1i/tY4dNS7fi777EZgsq3ol+bI++tFt4SG/nFLxIhV/JSAV8ag1MMbVwbmeB8b8uUnfUsxRw6lEHB+KVUFNt5kzRkdZnCJaSC1h9oDnupZ+QJVVXEdyFd0BCv6lQKWR1ky9QMhd8rY4S/EoiGN88/c0kYC3XHCoj0iHAB7DLxF8W5Mgr+yqIXk7cavE+6zPogFvMxU2B/xJToUGgloHmVHss1CKEFLioQDUtd/UZs7iUjNawMJTCUk3Tol8QYs=
 #  on:
 #    tags: true
-#    repo: dancrumb/graceful-degrade
+#    repo: dancrumb/fallback-plan

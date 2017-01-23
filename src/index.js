@@ -49,7 +49,7 @@ function fallback(sources) {
   });
 }
 
-const sourceMultiplier = function* sourceGenerator(val, times) {
+const sourceReplicator = function* sourceGenerator(val, times) {
   let countdown = times;
   const infinite = times === 0;
   while (infinite || countdown > 0) {
@@ -62,6 +62,6 @@ module.exports = {
   fallback,
 
   retry(source, times) {
-    return fallback(sourceMultiplier(source, times));
+    return fallback(sourceReplicator(source, times));
   },
 };

@@ -13,7 +13,7 @@ const expect = chai.expect;
 const fail = x => () => Promise.reject(x);
 const pass = x => () => Promise.resolve(x);
 
-describe('graceful-degrade', () => {
+describe('fallback-plan', () => {
   describe('fallback', () => {
     it('returns a single resolved Promise\'s value', () => expect(pf.fallback([pass(42)], Promise)).to.eventually.equal(42));
     it('returns a single rejected Promise\'s reason', () => expect(pf.fallback([fail(31)], Promise)).to.be.rejectedWith(31));

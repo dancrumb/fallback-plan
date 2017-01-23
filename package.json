@@ -1,5 +1,5 @@
 {
-  "name": "graceful-degrade",
+  "name": "fallback-plan",
   "version": "1.0.0",
   "description": "Handy support for graceful degradation",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dancrumb/graceful-degrade.git"
+    "url": "git+https://github.com/dancrumb/fallback-plan.git"
   },
   "keywords": [
     "promises",
@@ -19,9 +19,9 @@
   "author": "Dan Rumney <dancrumb@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dancrumb/graceful-degrade/issues"
+    "url": "https://github.com/dancrumb/fallback-plan/issues"
   },
-  "homepage": "https://github.com/dancrumb/graceful-degrade#readme",
+  "homepage": "https://github.com/dancrumb/fallback-plan#readme",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-preset-es2015": "^6.22.0",
