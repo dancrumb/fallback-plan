@@ -58,10 +58,20 @@ const sourceReplicator = function* sourceGenerator(val, times) {
   }
 };
 
+const cycleGenerator = function* cycleGenerator(parameters, func) {
+  for (let i = 0; i < parameters.length; i += 1) {
+    yield func(...parameters[i]);
+  }
+};
+
 module.exports = {
   fallback,
 
-  retry(source, times) {
+  retry(source, times = 0) {
     return fallback(sourceReplicator(source, times));
+  },
+
+  cycle(parameters, func) {
+    return fallback(cycleGenerator(parameters, func));
   },
 };
