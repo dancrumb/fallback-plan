@@ -13,7 +13,7 @@ after_script:
 - codeclimate-test-reporter < coverage/lcov.info
 addons:
   code_climate:
-    repo_token: d308b190c3178833fc803ddf14416572ed53f908e94dbbaa96e36ad076a09110
+    repo_token: 283c78950c080ffc5225cfd5ce18db55ea3dc5079db705497d9f6457c2f94634
 #deploy:
 #  provider: npm
 #  email: dancrumb@gmail.com
