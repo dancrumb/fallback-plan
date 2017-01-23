@@ -1,5 +1,3 @@
-require('babel-polyfill');
-
 const isFunction = val => (typeof val === 'function');
 const isPromise = val => (val.then && isFunction(val.then));
 
