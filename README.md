@@ -6,6 +6,8 @@
 [![Test Coverage](https://codeclimate.com/github/dancrumb/fallback-plan/badges/coverage.svg)](https://codeclimate.com/github/dancrumb/fallback-plan/coverage)
 [![Build Status](https://travis-ci.org/dancrumb/fallback-plan.svg?branch=master)](https://travis-ci.org/dancrumb/fallback-plan)
 [![dependencies Status](https://david-dm.org/dancrumb/fallback-plan/status.svg)](https://david-dm.org/dancrumb/fallback-plan)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dancrumb/fallback-plan)](https://dependabot.com)
+
 
 Wouldn't it be nice if everything went smoothly?
 
