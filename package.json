@@ -34,7 +34,7 @@
     "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.9.0",
+    "eslint-plugin-react": "^7.31.10",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^6.2.2",
