@@ -87,11 +87,6 @@ describe('fallback-plan', () => {
         ).resolves.toBe(3),
       ]));
     it('handles cycling when the task is just a value', () =>
-      Promise.all([
-        expect(cycle([[1], [2], [3]], 42)).resolves.toBe(42),
-        expect(
-          cycle([[Promise.reject(1)], [Promise.reject(2)], [Promise.resolve(3)]], 42)
-        ).resolves.toBe(42),
-      ]));
+      Promise.all([expect(cycle([[1], [2], [3]], 42)).resolves.toBe(42)]));
   });
 });
