@@ -1,7 +1,13 @@
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-node_modules/
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 dist/
 .DS_Store
 npm-debug.log
