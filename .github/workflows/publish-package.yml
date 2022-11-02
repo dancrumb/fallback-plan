@@ -1,4 +1,4 @@
-name: Publish Package to github
+name: Publish Package to npm
 on:
   release:
     types: [created]
@@ -19,7 +19,8 @@ jobs:
           node-version: '18.x'
           registry-url: "https://registry.npmjs.org"
           scope: '@dancrumb'
+          
       - run: yarn
-      - run: npm publish
+      - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
