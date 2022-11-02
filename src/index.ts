@@ -24,7 +24,7 @@ const reducer = <P extends any[] = []>(params: P = [] as unknown as P) => {
     }
     try {
       if (isFunction(task)) {
-        return await task(...params);
+        return await Promise.resolve().then(() => task(...params));
       }
       return await task;
     } catch (e) {

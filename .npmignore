@@ -10,3 +10,5 @@ coverage/
 .codeclimate.yml
 .travis.yml
 .npmignore
+.github/
+__tests__/
