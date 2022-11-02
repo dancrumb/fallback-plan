@@ -1,12 +1,9 @@
 # Fallback Plan
 
-[![NPM](https://nodei.co/npm/fallback-plan.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/fallback-plan/)
-
-[![Code Climate](https://codeclimate.com/github/dancrumb/fallback-plan/badges/gpa.svg)](https://codeclimate.com/github/dancrumb/fallback-plan)
-[![Test Coverage](https://codeclimate.com/github/dancrumb/fallback-plan/badges/coverage.svg)](https://codeclimate.com/github/dancrumb/fallback-plan/coverage)
-[![Build Status](https://travis-ci.org/dancrumb/fallback-plan.svg?branch=master)](https://travis-ci.org/dancrumb/fallback-plan)
-[![dependencies Status](https://david-dm.org/dancrumb/fallback-plan/status.svg)](https://david-dm.org/dancrumb/fallback-plan)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=dancrumb/fallback-plan)](https://dependabot.com)
+[![NPM](https://nodei.co/npm/@dancrumb/fallback-plan.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@dancrumb/fallback-plan/)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/dancrumb/fallback-plan?style=for-the-badge)](https://codeclimate.com/github/dancrumb/fallback-plan)
+[!![Code Climate coverage](https://img.shields.io/codeclimate/coverage/dancrumb/fallback-plan?style=for-the-badge)](https://codeclimate.com/github/dancrumb/fallback-plan/coverage)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dancrumb/fallback-plan/Build%20and%20Test?style=for-the-badge)
 
 
 Wouldn't it be nice if everything went smoothly?

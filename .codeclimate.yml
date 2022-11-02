@@ -1,19 +1,26 @@
----
-engines:
+version: "2"
+plugins:
   duplication:
     enabled: true
     config:
       languages:
-      - javascript
+        - typescript
   eslint:
     enabled: true
-    channel: "eslint-3"
+    channel: "eslint-7"
+    config:
+      extensions:
+        - tsx
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.js"
+    - "**.ts"
 exclude_paths:
-- test/
-- examples/
-- docs/
+  - __tests__/
+  - examples/
+  - docs/
+  - .yarn
+  - coverage
+  - .github
+  - .vscode
