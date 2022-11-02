@@ -184,5 +184,4 @@ without a problem!
 This module is provided under the [MIT License](MIT).
 
 [MIT]: https://spdx.org/licenses/MIT
-[bluebird]: http://bluebirdjs.com/
 [iterable]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#iterable
