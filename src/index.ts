@@ -1,23 +1,20 @@
-const isFunction = (val: unknown): val is Function => typeof val === "function";
+const isFunction = (val: unknown): val is Function => typeof val === 'function';
 
-type Task<R, P extends any[] = []> =
+type Task<R, P extends unknown[] = []> =
   | ((...args: P) => Promise<R>)
   | ((...args: P) => R)
   | R
   | Promise<R>;
 
 class TaskFailureTracker {
-  readonly failures: any[] = [];
-  constructor(failures: any[]) {
+  readonly failures: unknown[] = [];
+  constructor(failures: unknown[]) {
     this.failures = failures;
   }
 }
 
-const reducer = <P extends any[] = []>(params: P = [] as unknown as P) => {
-  return async <R>(
-    previous: Promise<R | TaskFailureTracker>,
-    task: Task<R, P>
-  ) => {
+const reducer = <P extends unknown[] = []>(params: P = [] as unknown as P) => {
+  return async <R>(previous: Promise<R | TaskFailureTracker>, task: Task<R, P>) => {
     const prev = await previous;
     if (!(prev instanceof TaskFailureTracker)) {
       return prev;
@@ -33,7 +30,7 @@ const reducer = <P extends any[] = []>(params: P = [] as unknown as P) => {
   };
 };
 
-const resolveList = <R, P extends any[] = []>(
+const resolveList = <R, P extends unknown[] = []>(
   tasks: Task<R, P>[],
   params: P = [] as unknown as P
 ) =>
@@ -50,7 +47,7 @@ export const fallback = async <R>(sources: Task<R>[]) => {
   return result;
 };
 
-const cycleGenerator = <P extends any[], R>(
+const cycleGenerator = <P extends unknown[], R>(
   parameters: P[],
   task: Task<R, P>
 ): Task<R>[] => {
@@ -64,10 +61,7 @@ export const retry = async <R>(task: Task<R>, times = 0, delay = 0) => {
   let countdown = times;
   const infinite = times === 0;
   while (infinite || countdown > 0) {
-    const result = await reducer([])(
-      Promise.resolve(new TaskFailureTracker([])),
-      task
-    );
+    const result = await reducer([])(Promise.resolve(new TaskFailureTracker([])), task);
     if (!(result instanceof TaskFailureTracker)) {
       return result;
     }
@@ -77,9 +71,6 @@ export const retry = async <R>(task: Task<R>, times = 0, delay = 0) => {
   return null;
 };
 
-export const cycle = <P extends any[], R>(
-  parameters: P[],
-  task: Task<R, P>
-) => {
+export const cycle = <P extends unknown[], R>(parameters: P[], task: Task<R, P>) => {
   return fallback(cycleGenerator(parameters, task));
 };
