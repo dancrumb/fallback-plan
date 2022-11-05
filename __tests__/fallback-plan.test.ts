@@ -2,21 +2,21 @@ import {describe, expect, it, jest} from '@jest/globals';
 
 import {fallback, retry, cycle} from '../src/index';
 
-const fail = (x: any) => () => Promise.reject(x);
-const pass = (x: any) => () => Promise.resolve(x);
+const fail = (x: unknown) => () => Promise.reject(x);
+const succeed = (x: unknown) => () => Promise.resolve(x);
 
 describe('fallback-plan', () => {
   describe('fallback', () => {
     it("returns a single resolved Promise's value", () =>
-      expect(fallback([pass(42)])).resolves.toBe(42));
+      expect(fallback([succeed(42)])).resolves.toBe(42));
     it("returns a single rejected Promise's reason", () =>
       expect(fallback([fail(31)])).rejects.toBe(31));
     it("returns the first resolved Promise's value", () =>
       Promise.all([
-        expect(fallback([fail(1), pass(2)])).resolves.toBe(2),
-        expect(fallback([fail(1), fail(2), pass(3)])).resolves.toBe(3),
-        expect(fallback([pass(1), pass(2), pass(3)])).resolves.toBe(1),
-        expect(fallback([fail(1), pass(2), fail(3)])).resolves.toBe(2),
+        expect(fallback([fail(1), succeed(2)])).resolves.toBe(2),
+        expect(fallback([fail(1), fail(2), succeed(3)])).resolves.toBe(3),
+        expect(fallback([succeed(1), succeed(2), succeed(3)])).resolves.toBe(1),
+        expect(fallback([fail(1), succeed(2), fail(3)])).resolves.toBe(2),
       ]));
     it("returns the last rejected Promise's value", () =>
       Promise.all([
@@ -25,10 +25,10 @@ describe('fallback-plan', () => {
       ]));
     it('only requires a single resolved Promise to resolve', () =>
       Promise.all([
-        expect(fallback([pass(1), fail(2), fail(3), fail(4)])).resolves.toBe(1),
-        expect(fallback([fail(1), pass(2), fail(3), fail(4)])).resolves.toBe(2),
-        expect(fallback([fail(1), fail(2), pass(3), fail(4)])).resolves.toBe(3),
-        expect(fallback([fail(1), fail(2), fail(3), pass(4)])).resolves.toBe(4),
+        expect(fallback([succeed(1), fail(2), fail(3), fail(4)])).resolves.toBe(1),
+        expect(fallback([fail(1), succeed(2), fail(3), fail(4)])).resolves.toBe(2),
+        expect(fallback([fail(1), fail(2), succeed(3), fail(4)])).resolves.toBe(3),
+        expect(fallback([fail(1), fail(2), fail(3), succeed(4)])).resolves.toBe(4),
       ]));
     it('supports values in the input list', () =>
       Promise.all([expect(fallback([42])).resolves.toBe(42)]));

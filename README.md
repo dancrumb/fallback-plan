@@ -1,8 +1,9 @@
 # Fallback Plan
 
 [![NPM](https://nodei.co/npm/@dancrumb/fallback-plan.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@dancrumb/fallback-plan/)
+
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/dancrumb/fallback-plan?style=for-the-badge)](https://codeclimate.com/github/dancrumb/fallback-plan)
-[!![Code Climate coverage](https://img.shields.io/codeclimate/coverage/dancrumb/fallback-plan?style=for-the-badge)](https://codeclimate.com/github/dancrumb/fallback-plan/coverage)
+[![Code Climate coverage](https://img.shields.io/codeclimate/coverage/dancrumb/fallback-plan?style=for-the-badge)](https://codeclimate.com/github/dancrumb/fallback-plan/coverage)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dancrumb/fallback-plan/Build%20and%20Test?style=for-the-badge)
 
 
@@ -51,7 +52,7 @@ This solves the non-dynamic problem, but we've now got a hulking great reducer i
 whose purpose is not exactly obvious.
 
 In addition, this all assumes that your sources return promises. Some of them may be accessed
-synchronously. Promisifying them may not really be warranted.
+synchronously. It may not really be warranted to convert them into promises.
 
 Enter `fallback-plan`
 
