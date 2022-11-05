@@ -1,7 +1,7 @@
 src/
 test/
 .eslintignore
-.eslintrc
+.eslintrc.js
 node_modules/
 coverage/
 .idea/
@@ -16,3 +16,6 @@ __tests__/
 .pnp*
 .prettierrc
 .yarnrc.yml
+.vscode/
+jest.*
+tsconfig.json

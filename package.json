@@ -1,10 +1,10 @@
 {
   "name": "@dancrumb/fallback-plan",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Handy support for graceful degradation",
   "main": "dist/index.js",
   "scripts": {
-    "build": "yarn run tsc",
+    "build": "yarn run tsc --project ./tsconfig.build.json",
     "test": "yarn run jest",
     "lint": "yarn run eslint -c .eslintrc.js --ext .ts src",
     "docs": "yarn run typedoc src --plugin typedoc-plugin-mdn-links",
