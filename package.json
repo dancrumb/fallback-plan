@@ -1,6 +1,6 @@
 {
   "name": "@dancrumb/fallback-plan",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Handy support for graceful degradation",
   "main": "dist/index.js",
   "scripts": {
