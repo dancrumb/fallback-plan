@@ -77,6 +77,34 @@ const resolveList = <R, P extends unknown[] = []>(
  *
  * This returns a Promise that resolves to the successful value or rejects with the final error in
  * the plan.
+ * 
+ * @example
+ * Using the `fallback-plan`, the code in the docs could be rewritten:
+
+```
+fallback([
+    () => getRemoteResource('foo'),
+    () => getRemoteResource('foo2'),
+    () => getLocalResource('foo3'),
+    () => getDefault()
+]).then(useResource);
+```
+
+Actually, you could go a step further, since the call to `getDefault` has no parameters:
+```
+fallback([
+    () => getRemoteResource('foo'),
+    () => getRemoteResource('foo2'),
+    () => getLocalResource('foo3'),
+    getDefault
+]).then(useResource);
+```
+since `fallback` handles:
+
+- plain values
+- Promises that resolve a value
+- functions that return Promises
+- functions that return a value
  *
  * @param tasks - the {@link Task}s that you want in your plan; none of these can take any parameter
  */

@@ -68,38 +68,9 @@ or
 yarn add @dancrumb/fallback-plan
 ```
 
-# Usage
-
-Using the `fallback-plan`, the code above could be rewritten:
-
-```
-fallback([
-    () => getRemoteResource('foo'),
-    () => getRemoteResource('foo2'),
-    () => getLocalResource('foo3'),
-    () => getDefault()
-]).then(useResource);
-```
-
-Actually, you could go a step further, since the call to `getDefault` has no parameters:
-```
-fallback([
-    () => getRemoteResource('foo'),
-    () => getRemoteResource('foo2'),
-    () => getLocalResource('foo3'),
-    getDefault
-]).then(useResource);
-```
-since `fallback` handles:
-
-- plain values
-- Promises that resolve a value
-- functions that return Promises
-- functions that return a value
-
 # API
 
-For more details on the API, please visit our [Github Page](https://fallback-plan.dancrumb.com/)
+For more examples, please visit our [Github Page](https://fallback-plan.dancrumb.com/)
 
 # FAQs
 Here are some answers to questions you may have.
