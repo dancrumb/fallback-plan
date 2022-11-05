@@ -40,7 +40,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["ts-jest", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:29.0.3"],\
             ["ts-node", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:10.9.1"],\
-            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.19"],\
+            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.20"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
           ],\
           "linkType": "SOFT"\
@@ -854,7 +854,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.7.1"],\
             ["ts-jest", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:29.0.3"],\
             ["ts-node", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:10.9.1"],\
-            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.19"],\
+            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.20"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"]\
           ],\
           "linkType": "SOFT"\
@@ -6169,17 +6169,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["typedoc", [\
-        ["npm:0.23.19", {\
-          "packageLocation": "./.yarn/cache/typedoc-npm-0.23.19-bfcf07047f-4659dce4e8.zip/node_modules/typedoc/",\
+        ["npm:0.23.20", {\
+          "packageLocation": "./.yarn/cache/typedoc-npm-0.23.20-cce18266a5-8dbe046794.zip/node_modules/typedoc/",\
           "packageDependencies": [\
-            ["typedoc", "npm:0.23.19"]\
+            ["typedoc", "npm:0.23.20"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.19", {\
-          "packageLocation": "./.yarn/__virtual__/typedoc-virtual-9a1a0b1296/0/cache/typedoc-npm-0.23.19-bfcf07047f-4659dce4e8.zip/node_modules/typedoc/",\
+        ["virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.20", {\
+          "packageLocation": "./.yarn/__virtual__/typedoc-virtual-25f63206da/0/cache/typedoc-npm-0.23.20-cce18266a5-8dbe046794.zip/node_modules/typedoc/",\
           "packageDependencies": [\
-            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.19"],\
+            ["typedoc", "virtual:018fa858e569791c0538cf27e4ae98f9d309008e910038976d6e5e0e0905f370a4af79be7c22d3eaa440edbe8cc30f3c095f91b865a293e625b9b3aac356774e#npm:0.23.20"],\
             ["@types/typescript", null],\
             ["lunr", "npm:2.3.9"],\
             ["marked", "npm:4.2.1"],\
