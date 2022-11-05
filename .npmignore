@@ -12,3 +12,7 @@ coverage/
 .npmignore
 .github/
 __tests__/
+.yarn/
+.pnp*
+.prettierrc
+.yarnrc.yml
