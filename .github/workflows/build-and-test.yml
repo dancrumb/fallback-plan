@@ -18,6 +18,20 @@ jobs:
           cache: "yarn"
       - run: yarn install --immutable
       - run: yarn run lint
+  build:
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "yarn"
+      - run: yarn install --immutable
+      - run: yarn run build
   test:
     strategy:
       matrix:
