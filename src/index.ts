@@ -72,9 +72,13 @@ const resolveList = <R, P extends unknown[] = []>(
   );
 
 /**
- * Steps through a series of Tasks and returns the result of the first successful one or the last failed one
- * @param tasks
- * @returns
+ * `fallback` takes an array of {@link Task}s and uses it as a fallback plan. For each value in
+ * the array, if it doesn't resolve to a successful value, the fallback plan will try the next.
+ *
+ * This returns a Promise that resolves to the successful value or rejects with the final error in
+ * the plan.
+ *
+ * @param tasks - the {@link Task}s that you want in your plan; none of these can take any parameter
  */
 export const fallback = async <R>(tasks: Task<R>[]) => {
   const result = await resolveList(tasks);
@@ -91,9 +95,20 @@ export const fallback = async <R>(tasks: Task<R>[]) => {
  *
  * Returns when an attempt at a task is successful
  *
- * @param task
- * @param times
- * @param delay
+ * @example
+ *
+ * ```
+ * // A task with a 1s timeout
+ * const task = Promise.race([() => getResource('foo'), new Promise((_,rej) => setTimeout(rej,1000))]);
+ * retry(() => getResource('foo').timeout(1000), 5)
+ *   .then(useResource);
+ * ```
+ *
+ * This will attempt to get `foo` up to 5 times. It will stop trying when it gets it.
+ *
+ * @param task - the {@link Task} to keep trying
+ * @param times - the number of times to keep trying; defaults to 0 which means keep trying until successful
+ * @param delay - the number of milliseconds to wait between tries; defaults to no wait
  * @returns
  */
 export const retry = async <R>(task: Task<R>, times = 0, delay = 0) => {
@@ -113,9 +128,22 @@ export const retry = async <R>(task: Task<R>, times = 0, delay = 0) => {
 /**
  * Steps through a single task with differing parameters and returns the results of the first successful one
  * or last failed one
- * @param parameters
- * @param task
- * @returns
+ *
+ * @example
+ * For example:
+ * ```
+ * cycle([
+ *   'foo',
+ *   'foo2',
+ *   'foo4'
+ * ], getResource).then(useResource);
+ * ```
+ *
+ * This is handy for when the only thing that changes between the steps in your plan are parameters.
+ *
+ * @param parameters - a list of the parameters to pass to the {@link Task}. If the task takes multiple parameters, these should be
+ *                     represented as a list
+ * @param task - the {@link Task} to execute
  */
 export const cycle = <P extends unknown[], R>(parameters: P[], task: Task<R, P>) => {
   let tasks: Task<R, P>[] = [];

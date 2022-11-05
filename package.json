@@ -7,7 +7,7 @@
     "build": "yarn run tsc",
     "test": "yarn run jest",
     "lint": "yarn run eslint -c .eslintrc.js --ext .ts src",
-    "docs": "yarn run typedoc src",
+    "docs": "yarn run typedoc src --plugin typedoc-plugin-mdn-links",
     "preversion": "npm run compile"
   },
   "repository": {
@@ -39,6 +39,7 @@
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.19",
+    "typedoc-plugin-mdn-links": "^2.0.0",
     "typescript": "^4.8.4"
   },
   "packageManager": "yarn@3.2.4"

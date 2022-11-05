@@ -434,6 +434,7 @@ __metadata:
     ts-jest: ^29.0.3
     ts-node: ^10.9.1
     typedoc: ^0.23.19
+    typedoc-plugin-mdn-links: ^2.0.0
     typescript: ^4.8.4
   languageName: unknown
   linkType: soft
@@ -4849,6 +4850,15 @@ __metadata:
   version: 0.21.3
   resolution: "type-fest@npm:0.21.3"
   checksum: e6b32a3b3877f04339bae01c193b273c62ba7bfc9e325b8703c4ee1b32dc8fe4ef5dfa54bf78265e069f7667d058e360ae0f37be5af9f153b22382cd55a9afe0
+  languageName: node
+  linkType: hard
+
+"typedoc-plugin-mdn-links@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "typedoc-plugin-mdn-links@npm:2.0.0"
+  peerDependencies:
+    typedoc: 0.22.x || 0.23.x
+  checksum: 576cc61935f25f5e91ef0e9582822e9548336297b160e63d284d41f703d6fa8e000b1b9fc7083e35fecf8895d94213326f9513dbc761f3a60c228aedca488328
   languageName: node
   linkType: hard
 

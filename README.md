@@ -56,12 +56,24 @@ synchronously. It may not really be warranted to convert them into promises.
 
 Enter `fallback-plan`
 
+# Installation
+
+```
+npm i @dancrumb/fallback-plan
+```
+
+or
+
+```
+yarn add @dancrumb/fallback-plan
+```
+
 # Usage
 
 Using the `fallback-plan`, the code above could be rewritten:
 
 ```
-plan.fallback([
+fallback([
     () => getRemoteResource('foo'),
     () => getRemoteResource('foo2'),
     () => getLocalResource('foo3'),
@@ -71,7 +83,7 @@ plan.fallback([
 
 Actually, you could go a step further, since the call to `getDefault` has no parameters:
 ```
-plan.fallback([
+fallback([
     () => getRemoteResource('foo'),
     () => getRemoteResource('foo2'),
     () => getLocalResource('foo3'),
@@ -87,55 +99,17 @@ since `fallback` handles:
 
 # API
 
-## fallback
-The basic case allows you to provide a fallback plan.
+For more details on the API, please visit our [Github Page](https://fallback-plan.dancrumb.com/)
 
-`plan.fallback` takes an [iterable][iterable] and uses it as a fallback plan. For each value in
-the iterable, if it doesn't resolve to a successful value, the fallback plan will try the next.
+# FAQs
+Here are some answers to questions you may have.
+## Can I nest plans within plans?
 
-This returns a Promise that resolves to the successful value or rejects with the final error in
-the plan.
-
-## retry
-A special case of the fallback plan is to just retry a few times. `fallback-plan` supports this.
-
-Using [`bluebird`][bluebird]'s timeout capability:
+Since all of the fallback plan options ultimately return a Promise, you can nest them:
 
 ```
-plan.retry(() => getResource('foo').timeout(1000), 5)
-    .then(useResource);
-```
-
-This will attempt to get `foo` up to 5 times. It will stop trying when it gets it.
-
-You can retry indefinitely with:
-```
-plan.retry(() => getResource('foo').timeout(1000))
-    .then(useResource);
-```
-## cycle
-Another special case is a single function and just cycling through sets of parameters until some
-succeed.
-
-For example:
-
-```
-plan.cycle([
-    'foo',
-    'foo2',
-    'foo4'
-], getResource).then(useResource);
-```
-
-This is handy for when the only thing that changes between the steps in your plan are parameters.
-
-## Nesting
-
-Since all of the fallback plan options return a Promise, you can nest them:
-
-```
-plan.fallback([
-    plan.cycle([
+fallback([
+    cycle([
         'foo',
         'foo2'
     ], getRemoteResource),
@@ -143,16 +117,6 @@ plan.fallback([
     getDefault
 ]).then(useResource);
 ```
-
-# Installation
-
-```
-npm i -S fallback-plan
-```
-
-# Some relevant thoughts
-
-Some things to consider:
 
 ## Why not just use Promise.race or Promise.any?
 These types of methods are pretty cool, but they execute *all* of the Promises in order to determine
@@ -163,10 +127,10 @@ you want to do is to fire them off unnecessarily. `fallback-plan` only calls a f
 that returns a Promise if it needs to.
 
 ## Why use functions that return Promises rather than Promises themselves?
-Same reason as above. If you did:
+Same reason as given in the examples above. If you did:
 
 ```
-plan.fallback([
+fallback([
     getRemoteResource('foo'),
     getRemoteResource('foo2'),
     getLocalResource('foo3'),
@@ -176,7 +140,6 @@ plan.fallback([
 
 then you would have requested `'foo'`, `'foo2'` and `'foo3'`... even if `'foo'` comes back 
 without a problem!
-
 
 # License
 This module is provided under the [MIT License](MIT).
